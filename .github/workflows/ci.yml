@@ -59,6 +59,7 @@ jobs:
         env:
           OS_NAME: linux
       - name: Upload APK
+        id: upload-app
         uses: actions/upload-artifact@v4
         with:
           path: frontends/android/BitBoxApp/app/build/outputs/apk/debug/app-debug.apk
@@ -75,16 +76,19 @@ jobs:
         env:
           OS_NAME: linux
       - name: Upload AppImage
+        id: upload-app-app-image
         uses: actions/upload-artifact@v4
         with:
           path: frontends/qt/build/linux/BitBoxApp-*.AppImage
           name: BitBoxApp-linux-${{github.sha}}.AppImage
       - name: Upload deb
+        id: upload-app-deb
         uses: actions/upload-artifact@v4
         with:
           path: frontends/qt/build/linux/bitbox_*.deb
           name: BitBoxApp-linux-${{github.sha}}.deb
       - name: Upload rpm
+        id: upload-app-rpm
         uses: actions/upload-artifact@v4
         with:
           path: frontends/qt/build/linux/bitbox-*.rpm
@@ -129,6 +133,7 @@ jobs:
           ditto -c -k --keepParent BitBox.app ${{github.workspace}}/BitBoxApp-macos.zip;
           popd;
       - name: Upload app
+        id: upload-app
         uses: actions/upload-artifact@v4
         with:
           path: BitBoxApp-macos.zip
@@ -163,3 +168,28 @@ jobs:
         run: |
           make gomobileinit
           (cd $GOPATH/$GO_SRC_DIR; make ios)
+
+  report-artifacts:
+    runs-on: ubuntu-22.04
+    needs: [android, qt-linux, macos, ios]
+    if: ${{ !cancelled() }}
+    steps:
+      - if: job.status == 'success'
+        uses: mattermost/action-mattermost-notify@master
+        with:
+          MATTERMOST_WEBHOOK_URL: ${{ secrets.MM_WEBHOOK_URL }}
+          MATTERMOST_ICON_URL: https://uxwing.com/wp-content/themes/uxwing/download/resize.php?size=512x512&file=check-mark-circle-line-icon.png&category_slug=checkmark-cross
+          TEXT: |
+            New build artifacts from `master` branch of ${{ github.repository }}.
+            * Android - [Download](${{needs.android.steps.upload-app.outputs.artifact-url}})
+            * Linux - [AppImage](${{needs.qt-linux.steps.upload-app-app-image.outputs.artifact-url}}) [DEB](${{needs.qt-linux.steps.upload-app-deb.outputs.artifact-url}}) [RPM](${{needs.qt-linux.steps.upload-app-rpm.outputs.artifact-url}})
+            * MacOS - [Download](${{needs.macos.steps.upload-app.outputs.artifact-url}})
+
+      - if: job.status == 'failure'
+        uses: mattermost/action-mattermost-notify@master
+        with:
+          MATTERMOST_WEBHOOK_URL: ${{ secrets.MM_WEBHOOK_URL }}
+          MATTERMOST_ICON_URL: https://uxwing.com/wp-content/themes/uxwing/download/resize.php?size=512x512&file=check-mark-circle-line-icon.png&category_slug=checkmark-cross
+          TEXT: |
+            Oh, oh, CI for ${{ github.repository }} is broken.
+            [Pipeline](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) failed.
