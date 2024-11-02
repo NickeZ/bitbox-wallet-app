@@ -44,7 +44,7 @@ jobs:
             {
               "text": "**New artifacts built**\n([${{ github.repository }}](https://github.com/${{ github.repository }}), branch: ${{ github.ref_name }}, commit: [${{ steps.vars.outputs.sha_short }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }}))\n* 1\n* 2",
               "icon_emoji": "white_check_mark",
-              "props": {"Repository": "${{ github.repository }}"}
+              "props": {"card": "Repository: ${{ github.repository }}\n"}
             }
 
       - if: job.status != 'failure'
