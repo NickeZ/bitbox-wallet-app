@@ -37,7 +37,7 @@ jobs:
         uses: mattermost/action-mattermost-notify@master
         with:
           MATTERMOST_WEBHOOK_URL: ${{ secrets.MM_WEBHOOK_URL }}
-          MATTERMOST_ICON_URL: https://uxwing.com/wp-content/themes/uxwing/download/resize.php?size=512x512&file=check-mark-circle-line-icon.png&category_slug=checkmark-cross
+          MATTERMOST_ICON_URL: https://fluenticons.co/icons/ic_fluent_checkmark_circle_24_regular.svg
           TEXT: |
             New build artifacts from `master` branch of ${{ github.repository }}.
 
@@ -45,7 +45,7 @@ jobs:
         uses: mattermost/action-mattermost-notify@master
         with:
           MATTERMOST_WEBHOOK_URL: ${{ secrets.MM_WEBHOOK_URL }}
-          MATTERMOST_ICON_URL: https://uxwing.com/wp-content/themes/uxwing/download/resize.php?size=512x512&file=exclamation-round-line-icon.png&category_slug=signs-and-symbols
+          MATTERMOST_ICON_URL: https://fluenticons.co/icons/ic_fluent_error_circle_24_regular.svg
           TEXT: |
             Oh, oh, CI for ${{ github.repository }} is broken.
             [Pipeline](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) failed.
