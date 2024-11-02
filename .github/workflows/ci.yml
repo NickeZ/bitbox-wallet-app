@@ -39,7 +39,7 @@ jobs:
           MATTERMOST_WEBHOOK_URL: ${{ secrets.MM_WEBHOOK_URL }}
           PAYLOAD: |-
             {
-              "text": "#### New artifacts built\n([${{ github.repository }}](https://github.com/${{ github.repository }}), branch: ${{ github.ref_name }}\n* 1\n* 2",
+              "text": "**New artifacts built**\n([${{ github.repository }}](https://github.com/${{ github.repository }}), branch: ${{ github.ref_name }}\n* 1\n* 2",
               "icon_emoji": "white_check_mark"
             }
 
@@ -49,6 +49,6 @@ jobs:
           MATTERMOST_WEBHOOK_URL: ${{ secrets.MM_WEBHOOK_URL }}
           PAYLOAD: |-
             {
-              "text": "#### Oh, oh, CI for [${{ github.repository }}](https://github.com/${{ github.repository }}) is broken.\n[Pipeline](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) failed.",
+              "text": "**Oh, oh, CI for [${{ github.repository }}](https://github.com/${{ github.repository }}) is broken.**\n[Pipeline](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) failed.",
               "icon_emoji": "warning"
             }
