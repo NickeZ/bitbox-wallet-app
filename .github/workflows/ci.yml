@@ -35,7 +35,7 @@ jobs:
     steps:
       - name: Create short sha
         id: vars
-        run: echo "sha_short=${GITHUB_SHA:0:6}" >> $GITHUB_OUTPUT
+        run: echo "sha_short=${GITHUB_SHA:0:7}" >> $GITHUB_OUTPUT
       - if: job.status == 'success'
         uses: mattermost/action-mattermost-notify@master
         with:
