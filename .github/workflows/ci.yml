@@ -33,13 +33,16 @@ jobs:
     runs-on: ubuntu-22.04
     if: ${{ !cancelled() }}
     steps:
+      - name: Create short sha
+        id: vars
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
       - if: job.status == 'success'
         uses: mattermost/action-mattermost-notify@master
         with:
           MATTERMOST_WEBHOOK_URL: ${{ secrets.MM_WEBHOOK_URL }}
           PAYLOAD: |-
             {
-              "text": "**New artifacts built**\n([${{ github.repository }}](https://github.com/${{ github.repository }}), branch: ${{ github.ref_name }}\n* 1\n* 2",
+              "text": "**New artifacts built**\n([${{ github.repository }}](https://github.com/${{ github.repository }}), branch: ${{ github.ref_name }}, commit: ${{ steps.vars.outputs.sha_short }}\n* 1\n* 2",
               "icon_emoji": "white_check_mark"
             }
 
@@ -49,6 +52,6 @@ jobs:
           MATTERMOST_WEBHOOK_URL: ${{ secrets.MM_WEBHOOK_URL }}
           PAYLOAD: |-
             {
-              "text": "**Oh, oh, CI for [${{ github.repository }}](https://github.com/${{ github.repository }}) is broken.**\n[Pipeline](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) failed.",
+              "text": "**Oh no! [${{ steps.vars.outputs.sha_short }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }}) failed to build.**\n[Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) failed.",
               "icon_emoji": "warning"
             }
