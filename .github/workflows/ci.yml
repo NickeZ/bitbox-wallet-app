@@ -42,7 +42,7 @@ jobs:
           MATTERMOST_WEBHOOK_URL: ${{ secrets.MM_WEBHOOK_URL }}
           PAYLOAD: |-
             {
-              "text": "**New artifacts built**\n([${{ github.repository }}](https://github.com/${{ github.repository }}), branch: ${{ github.ref_name }}, commit: [${{ steps.vars.outputs.sha_short }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }}))\n* 1\n* 2",
+              "text": "**New artifacts built**\n\n* 1\n* 2",
               "icon_emoji": "white_check_mark",
               "props": {"card": "Repository: [${{ github.repository }}](https://github.com/${{ github.repository }})\n\nbranch: [${{ github.ref_name }}](https://github.com/${{ github.repository }}/tree/${{ github.ref_name }})\n\ncommit: [${{ steps.vars.outputs.sha_short }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})"}
             }
@@ -53,6 +53,7 @@ jobs:
           MATTERMOST_WEBHOOK_URL: ${{ secrets.MM_WEBHOOK_URL }}
           PAYLOAD: |-
             {
-              "text": "**Oh no! [${{ steps.vars.outputs.sha_short }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }}) failed to build.**\n([${{ github.repository }}](https://github.com/${{ github.repository }}), branch: ${{ github.ref_name }})\nSee [Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) form more details.",
-              "icon_emoji": "warning"
+              "text": "**Oh no! [${{ steps.vars.outputs.sha_short }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }}) failed to build.**\nSee [Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) form more details.",
+              "icon_emoji": "warning",
+              "props": {"card": "Repository: [${{ github.repository }}](https://github.com/${{ github.repository }})\n\nbranch: [${{ github.ref_name }}](https://github.com/${{ github.repository }}/tree/${{ github.ref_name }})\n\ncommit: [${{ steps.vars.outputs.sha_short }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})"}
             }
