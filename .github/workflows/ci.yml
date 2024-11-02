@@ -41,11 +41,11 @@ jobs:
           TEXT: |
             New build artifacts from `master` branch of ${{ github.repository }}.
 
-      - if: job.status == 'failure'
+      - if: job.status != 'failure'
         uses: mattermost/action-mattermost-notify@master
         with:
           MATTERMOST_WEBHOOK_URL: ${{ secrets.MM_WEBHOOK_URL }}
-          MATTERMOST_ICON_URL: https://uxwing.com/wp-content/themes/uxwing/download/resize.php?size=512x512&file=check-mark-circle-line-icon.png&category_slug=checkmark-cross
+          MATTERMOST_ICON_URL: https://uxwing.com/wp-content/themes/uxwing/download/resize.php?size=512x512&file=exclamation-round-line-icon.png&category_slug=signs-and-symbols
           TEXT: |
             Oh, oh, CI for ${{ github.repository }} is broken.
             [Pipeline](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) failed.
