@@ -37,7 +37,7 @@ jobs:
         uses: mattermost/action-mattermost-notify@master
         with:
           MATTERMOST_WEBHOOK_URL: ${{ secrets.MM_WEBHOOK_URL }}
-          MATTERMOST_ICON_URL: https://fluenticons.co/icons/ic_fluent_checkmark_circle_24_regular.svg
+          MATTERMOST_ICON_URL: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0iIzAwMDAwMCIgdmlld0JveD0iMCAwIDI1NiAyNTYiPjxwYXRoIGQ9Ik0xNzAuODMsMTAxLjE3YTQsNCwwLDAsMSwwLDUuNjZsLTU2LDU2YTQsNCwwLDAsMS01LjY2LDBsLTI0LTI0YTQsNCwwLDAsMSw1LjY2LTUuNjZMMTEyLDE1NC4zNGw1My4xNy01My4xN0E0LDQsMCwwLDEsMTcwLjgzLDEwMS4xN1pNMjI4LDEyOEExMDAsMTAwLDAsMSwxLDEyOCwyOCwxMDAuMTEsMTAwLjExLDAsMCwxLDIyOCwxMjhabS04LDBhOTIsOTIsMCwxLDAtOTIsOTJBOTIuMSw5Mi4xLDAsMCwwLDIyMCwxMjhaIj48L3BhdGg+PC9zdmc+
           TEXT: |
             New build artifacts from `master` branch of ${{ github.repository }}.
 
@@ -45,7 +45,7 @@ jobs:
         uses: mattermost/action-mattermost-notify@master
         with:
           MATTERMOST_WEBHOOK_URL: ${{ secrets.MM_WEBHOOK_URL }}
-          MATTERMOST_ICON_URL: https://fluenticons.co/icons/ic_fluent_error_circle_24_regular.svg
+          MATTERMOST_ICON_URL: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0iIzAwMDAwMCIgdmlld0JveD0iMCAwIDI1NiAyNTYiPjxwYXRoIGQ9Ik0yMzMuMzQsMTkwLjA5LDE0NS44OCwzOC4yMmgwYTIwLjc1LDIwLjc1LDAsMCwwLTM1Ljc2LDBMMjIuNjYsMTkwLjA5YTE5LjUyLDE5LjUyLDAsMCwwLDAsMTkuNzFBMjAuMzYsMjAuMzYsMCwwLDAsNDAuNTQsMjIwSDIxNS40NmEyMC4zNiwyMC4zNiwwLDAsMCwxNy44Ni0xMC4yQTE5LjUyLDE5LjUyLDAsMCwwLDIzMy4zNCwxOTAuMDlaTTIyNi40LDIwNS44YTEyLjQ3LDEyLjQ3LDAsMCwxLTEwLjk0LDYuMkg0MC41NGExMi40NywxMi40NywwLDAsMS0xMC45NC02LjIsMTEuNDUsMTEuNDUsMCwwLDEsMC0xMS43MkwxMTcuMDUsNDIuMjFhMTIuNzYsMTIuNzYsMCwwLDEsMjEuOSwwTDIyNi40LDE5NC4wOEExMS40NSwxMS40NSwwLDAsMSwyMjYuNCwyMDUuOFpNMTI0LDE0NFYxMDRhNCw0LDAsMCwxLDgsMHY0MGE0LDQsMCwwLDEtOCwwWm0xMiwzNmE4LDgsMCwxLDEtOC04QTgsOCwwLDAsMSwxMzYsMTgwWiI+PC9wYXRoPjwvc3ZnPg==
           TEXT: |
             Oh, oh, CI for ${{ github.repository }} is broken.
             [Pipeline](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) failed.
