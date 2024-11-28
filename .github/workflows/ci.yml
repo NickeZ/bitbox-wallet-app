@@ -33,9 +33,10 @@ jobs:
     runs-on: windows-2019
     defaults:
       run:
-        shell: bash -x
+        shell: bash
     steps:
       - run: |
+          set -x
           ls 'C:\\mingw64\\lib'
           ls 'C:\\mingw64\\bin'
           ls 'C:\\mingw64\\x86_64-w64-mingw32'
