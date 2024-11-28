@@ -29,6 +29,11 @@ env:
   GITHUB_BUILD_DIR: ${{github.workspace}}
 
 jobs:
+  niklas:
+    runs-on: windows-2019
+    steps:
+      - run: |
+        ls C:/mingw64
   # test-lint:
   #   runs-on: ubuntu-22.04
   #   steps:
