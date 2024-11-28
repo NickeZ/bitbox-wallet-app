@@ -36,9 +36,11 @@ jobs:
         shell: bash
     steps:
       - run: |
-          ls 'C:\\mingw64'
+          ls 'C:\\mingw64\\lib'
+          ls 'C:\\mingw64\\bin'
+          ls 'C:\\mingw64\\x86_64-w64-mingw32'
       - run: |
-          find 'C:\\' -name libssp-0.dll
+          find 'C:\\mingw64' -name libssp-0.dll
   # test-lint:
   #   runs-on: ubuntu-22.04
   #   steps:
