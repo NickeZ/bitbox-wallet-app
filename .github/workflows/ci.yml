@@ -33,7 +33,7 @@ jobs:
     runs-on: windows-2019
     defaults:
       run:
-        shell: bash
+        shell: bash -x
     steps:
       - run: |
           ls 'C:\\mingw64\\lib'
