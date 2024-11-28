@@ -211,11 +211,11 @@ jobs:
       - name: Install other dependencies
         run: |
           choco install make
-          choco install mingw --version 13.2.0
-          echo "MINGW_BIN=/C/ProgramData/mingw64/mingw64/bin" >> $GITHUB_ENV
-          source $GITHUB_ENV
-          curl -L -o libssp-0.dll https://www.dllme.com/dll/files/libssp-0/01a446babe42a41104b919e9e36f1047
-          mv libssp-0.dll $MINGW_BIN
+          #choco install mingw --version 13.2.0
+          #echo "MINGW_BIN=/C/ProgramData/mingw64/mingw64/bin" >> $GITHUB_ENV
+          #source $GITHUB_ENV
+          #curl -L -o libssp-0.dll https://www.dllme.com/dll/files/libssp-0/01a446babe42a41104b919e9e36f1047
+          #mv libssp-0.dll $MINGW_BIN
       - name: Build Windows app
         run: |
           make qt-windows
