@@ -34,6 +34,8 @@ jobs:
     steps:
       - run: |
         ls C:/mingw64
+      - run: |
+        find libssp-0.dll C:
   # test-lint:
   #   runs-on: ubuntu-22.04
   #   steps:
