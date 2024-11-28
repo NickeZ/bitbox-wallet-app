@@ -31,11 +31,14 @@ env:
 jobs:
   niklas:
     runs-on: windows-2019
+    defaults:
+      run:
+        shell: bash
     steps:
       - run: |
-        ls C:/mingw64
+          ls 'C:/mingw64'
       - run: |
-        find libssp-0.dll C:
+          find libssp-0.dll 'C:'
   # test-lint:
   #   runs-on: ubuntu-22.04
   #   steps:
